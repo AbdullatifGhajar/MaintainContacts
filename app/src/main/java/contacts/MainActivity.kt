@@ -22,7 +22,7 @@ import com.maintain.contacts.R
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var contactsModalArrayList: ArrayList<ContactsModal>? = null
+    private var contactModalArrayList: ArrayList<ContactModal>? = null
     private var contactRV: RecyclerView? = null
     private var contactRVAdapter: ContactRVAdapter? = null
     private var loadingPB: ProgressBar? = null
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        contactsModalArrayList = ArrayList()
+        contactModalArrayList = ArrayList()
         contactRV = findViewById(R.id.idRVContacts)
         val addNewContactFAB = findViewById<FloatingActionButton>(R.id.idFABaddContact)
         loadingPB = findViewById(R.id.idPBLoading)
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun filter(text: String) {
-        val filteredList = contactsModalArrayList?.filter {
+        val filteredList = contactModalArrayList?.filter {
             it.userName.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))
             // TODO also filter for other info
         }
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareContactRV() {
-        contactRVAdapter = ContactRVAdapter(this, contactsModalArrayList)
+        contactRVAdapter = ContactRVAdapter(this, contactModalArrayList)
         contactRV!!.layoutManager = LinearLayoutManager(this)
         contactRV!!.adapter = contactRVAdapter
     }
@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                             val phoneNumber =
                                 phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                             // TODO save more information
-                            contactsModalArrayList!!.add(ContactsModal(displayName, phoneNumber))
+                            contactModalArrayList!!.add(ContactModal(displayName, phoneNumber))
                         }
                         phoneCursor.close()
                     }

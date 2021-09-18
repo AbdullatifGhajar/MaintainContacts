@@ -1,3 +1,0 @@
-package contacts
-
-class ContactActivity

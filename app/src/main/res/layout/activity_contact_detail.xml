@@ -11,7 +11,7 @@
         android:id="@+id/idIVProfile"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@color/purple_200"
+        android:background="@color/turquoise"
         android:padding="50dp"
         android:src="@drawable/ic_account"
         app:tint="@color/white"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/idIVProfile"
-        android:background="@color/purple_200"
+        android:background="@color/turquoise"
         android:padding="8dp"
         android:text="Name"
         android:textColor="@color/white"
@@ -31,6 +31,7 @@
 
     <!--card view for displaying user contact-->
     <androidx.cardview.widget.CardView
+        android:id="@+id/idContactCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/idTVName"
@@ -51,7 +52,7 @@
                 android:layout_margin="8dp"
                 android:padding="4dp"
                 android:src="@drawable/ic_call"
-                app:tint="@color/purple_700"
+                app:tint="@color/darkTurquoise"
                 android:contentDescription="Phone Icon" />
             <!--text view for displaying user contact-->
             <TextView
@@ -74,11 +75,31 @@
                 android:layout_margin="8dp"
                 android:padding="4dp"
                 android:src="@drawable/ic_message"
-                app:tint="@color/purple_700"
+                app:tint="@color/darkTurquoise"
                 android:contentDescription="Message Icon" />
 
         </RelativeLayout>
-        <!-- TODO add logs and activities -->
+
+    </androidx.cardview.widget.CardView>
+
+    <!--card view for displaying user contact info-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idContactCard"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <!--Recycler view for displaying list of contact info-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/idRVContactInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-1dp"
+            tools:itemCount="7" />
 
     </androidx.cardview.widget.CardView>
 

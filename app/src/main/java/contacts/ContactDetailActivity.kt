@@ -9,12 +9,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.maintain.contacts.R
 
 @JvmInline
 value class ContactInfo(val phoneNumber: String)
 
 class ContactDetailActivity : AppCompatActivity() {
+    // TODO use variable of element instead
+    private var contactInfoList: List<ContactInfoModal> = listOf(
+        ContactInfoModal("HI, this is a test description"),
+        ContactInfoModal("This is also a test one"),
+    )
+    private var contactInfoRV: RecyclerView? = null
+    private var contactInfoRVAdapter: ContactInfoRVAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_detail)
@@ -38,6 +47,11 @@ class ContactDetailActivity : AppCompatActivity() {
         messageIV.setOnClickListener {
             sendMessage(contactInfo)
         }
+
+        contactInfoRV = findViewById(R.id.idRVContactInfo)
+        contactInfoRVAdapter = ContactInfoRVAdapter(this, contactInfoList)
+        contactInfoRV!!.layoutManager = LinearLayoutManager(this)
+        contactInfoRV!!.adapter = contactInfoRVAdapter
     }
 
     private fun sendMessage(contactInfo: ContactInfo) {

@@ -15,22 +15,22 @@ import com.maintain.contacts.R
 class ContactRVAdapter
     (
     private val context: Context,
-    private var contactsModalArrayList: List<ContactsModal>?
+    private var contactModalArrayList: List<ContactModal>?
 ) : RecyclerView.Adapter<ContactRVAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // pass layout file for displaying card item
         return ViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.contacts_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.contact_item, parent, false)
         )
     }
 
-    fun filterList(filterList: List<ContactsModal>?) {
-        contactsModalArrayList = filterList
+    fun filterList(filterList: List<ContactModal>?) {
+        contactModalArrayList = filterList
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val modal = contactsModalArrayList!![position]
+        val modal = contactModalArrayList!![position]
         holder.contactTV.text = modal.userName
         // TODO don't continuously generate new color
         // TODO use profile image if possible
@@ -52,7 +52,7 @@ class ContactRVAdapter
     }
 
     override fun getItemCount(): Int {
-        return contactsModalArrayList!!.size
+        return contactModalArrayList!!.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

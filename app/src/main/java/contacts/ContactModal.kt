@@ -1,8 +1,8 @@
 package contacts
 
-class ContactsModal(
+class ContactModal(
     var userName: String,
     var contactNumber: String,
-    var relation: String,
+    // var relation: String,
     // var contactInfo: ArrayList<ContactActivity>,
 )
