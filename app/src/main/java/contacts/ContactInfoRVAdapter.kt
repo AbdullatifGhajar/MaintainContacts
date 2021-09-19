@@ -20,11 +20,6 @@ class ContactInfoRVAdapter
         )
     }
 
-    fun filterList(filterList: List<ContactInfoModal>?) {
-        contactInfoList = filterList
-        notifyDataSetChanged()
-    }
-
     override fun onBindViewHolder(holder: CIViewHolder, position: Int) {
         val modal = contactInfoList!![position]
         holder.contactInfoDescriptionTV.text = modal.description

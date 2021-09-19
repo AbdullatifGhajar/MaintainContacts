@@ -32,11 +32,12 @@ class MainActivity : AppCompatActivity() {
 
         contactModalArrayList = ArrayList()
         contactRV = findViewById(R.id.idRVContacts)
-        val addNewContactFAB = findViewById<FloatingActionButton>(R.id.idFABaddContact)
         loadingPB = findViewById(R.id.idPBLoading)
 
         prepareContactRV()
         requestPermissions()
+
+        val addNewContactFAB = findViewById<FloatingActionButton>(R.id.idFABaddContact)
         addNewContactFAB.setOnClickListener { //opening a new activity on below line.
             val i = Intent(this@MainActivity, CreateNewContactActivity::class.java)
             startActivity(i)
@@ -126,7 +127,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSettingsDialog() {
         val builder = AlertDialog.Builder(this@MainActivity)
-
 
         builder.setTitle("Need Permissions")
 

@@ -11,58 +11,57 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.maintain.contacts.R
 
-@JvmInline
-value class ContactInfo(val phoneNumber: String)
-
 class ContactDetailActivity : AppCompatActivity() {
-    // TODO use variable of element instead
-    private var contactInfoList: List<ContactInfoModal> = listOf(
-        ContactInfoModal("HI, this is a test description"),
-        ContactInfoModal("This is also a test one"),
-    )
-    private var contactInfoRV: RecyclerView? = null
+    private var contactInfoRV: RecyclerView = findViewById(R.id.idRVContactInfo)
     private var contactInfoRVAdapter: ContactInfoRVAdapter? = null
+    private var contactInfoList: List<ContactInfoModal> = emptyList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_detail)
 
         val contactName = intent.getStringExtra("name").toString()
-        val contactInfo = ContactInfo(intent.getStringExtra("contact").toString())
+        val phoneNumber = intent.getStringExtra("phone").toString()
 
         val nameTV = findViewById<TextView>(R.id.idTVName)
         // TODO set image
         // val profileIV = findViewById<ImageView>(R.id.idIVProfile)
         val phoneTV = findViewById<TextView>(R.id.idTVPhone)
         nameTV.text = contactName
-        phoneTV.text = contactInfo.phoneNumber
+        phoneTV.text = phoneNumber
         val callIV = findViewById<ImageView>(R.id.idIVCall)
         val messageIV = findViewById<ImageView>(R.id.idIVMessage)
         // call function
         callIV.setOnClickListener {
-            makeCall(contactInfo)
+            makeCall(phoneNumber)
         }
         // message function
         messageIV.setOnClickListener {
-            sendMessage(contactInfo)
+            sendMessage(phoneNumber)
         }
 
-        contactInfoRV = findViewById(R.id.idRVContactInfo)
         contactInfoRVAdapter = ContactInfoRVAdapter(this, contactInfoList)
         contactInfoRV!!.layoutManager = LinearLayoutManager(this)
         contactInfoRV!!.adapter = contactInfoRVAdapter
+
+        val addNewContactInfoFAB = findViewById<FloatingActionButton>(R.id.idFABAddContactInfo)
+        addNewContactInfoFAB.setOnClickListener { // add new contact info
+
+        }
     }
 
-    private fun sendMessage(contactInfo: ContactInfo) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("sms:${contactInfo.phoneNumber}"))
+    private fun sendMessage(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("sms:${phoneNumber}"))
         intent.putExtra("sms_body", "Enter your message")
         startActivity(intent)
     }
 
-    private fun makeCall(contactInfo: ContactInfo) {
+    private fun makeCall(phoneNumber: String) {
         val callIntent = Intent(Intent.ACTION_CALL)
-        callIntent.data = Uri.parse("tel:${contactInfo.phoneNumber}")
+        callIntent.data = Uri.parse("tel:${phoneNumber}")
         if (ActivityCompat.checkSelfPermission(
                 this@ContactDetailActivity,
                 Manifest.permission.CALL_PHONE

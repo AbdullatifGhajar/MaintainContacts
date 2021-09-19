@@ -46,7 +46,7 @@ class ContactRVAdapter
             val i = Intent(context, ContactDetailActivity::class.java)
             // TODO don't put parameters separately, use objects instead
             i.putExtra("name", modal.userName)
-            i.putExtra("contact", modal.contactNumber)
+            i.putExtra("phone", modal.contactNumber)
             context.startActivity(i)
         }
     }
